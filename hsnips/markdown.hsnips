@@ -1,0 +1,444 @@
+# ================================================================
+#  ■ Snippets for Markdown
+# ----------------------------------------------------------------
+#  Author:  Ichinoe Mizue
+#  Version: 1.6.0
+# ================================================================
+
+# ------------------------------------------------
+#  □ Chinese Punctuation
+# ------------------------------------------------
+
+snippet ,, "Comma" iA
+，
+endsnippet
+
+snippet \]] "Second Comma" iA
+、
+endsnippet
+
+snippet \.. "Dotted Period" iA
+．
+endsnippet
+
+snippet .. "Period" iA
+。
+endsnippet
+
+snippet ?? "Question Mark" iA
+？
+endsnippet
+
+snippet :: "Colon" iA
+：
+endsnippet
+
+snippet ;; "Semicolon" iA
+；
+endsnippet
+
+snippet \-- "Dash" iA
+——
+endsnippet
+
+snippet \^ "Ellipsis" iA
+……
+endsnippet
+
+snippet \-. "Dotted" iA
+·
+endsnippet
+
+snippet \xx "Cross" iA
+×
+endsnippet
+
+snippet \'' "Chinese Parentheses" iA
+（$1）$0
+endsnippet
+
+snippet \[[ "Square Beackets" iA
+「$1」$0
+endsnippet
+
+snippet \,, "Square Quotes" iA
+『$1』$0
+endsnippet
+
+# ------------------------------------------------
+#  □ Title
+# ------------------------------------------------
+
+snippet `\\[1-6]` "Title" A
+`` rv = "#".repeat(Number(m[0][1])) + " " ``
+endsnippet
+
+# ------------------------------------------------
+#  □ Signature and Tag
+# ------------------------------------------------
+
+snippet _< "Raw Sub" iA
+`` rv = '<sub>$1</sub>$0' ``
+endsnippet
+
+snippet ^< "Raw Sup" iA
+`` rv = '<sup>$1</sup>$0' ``
+endsnippet
+
+snippet `\\date ` "Date" A
+``
+const today = new Date();
+const yyyy = today.getFullYear(), M = today.getMonth() + 1, d = today.getDate();
+rv = `${yyyy} ${M}/${d}`
+``
+endsnippet
+
+snippet `\\ra ` "Right Align" A
+`` rv = '<p align="right"> $1 </p>$0' ``
+endsnippet
+
+snippet `\\img ` "Insert a Image" A
+`` rv = '<div style="text-align: center;">\n    <image src="" width="100%">\n</div>' ``
+endsnippet
+
+# ------------------------------------------------
+#  □ Table
+# ------------------------------------------------
+
+global
+function table(m) {
+    const rows = Number(m[0][6]), cols = Number(m[0][7]);
+    let globalCounter = 1;
+    let result = new Array(rows + 2)
+        .fill()
+        .map((_, index) => "|" +
+            new Array(cols)
+                .fill()
+                .map((_, subIndex) => index == 1
+                    ? ":--:|"
+                    : index == 0
+                    ? `  $${subIndex + 1}  |`
+                    : `  $${cols * (index - 1) + subIndex + 1}  |`
+                )
+                .join("")
+        )
+        .join("\n");
+    return result;
+}
+endglobal
+
+snippet `\\table\d\d` "m × nTable" A
+`` rv = table(m) ``$0
+endsnippet
+
+# ------------------------------------------------
+#  □ Combination Abbreviation
+# ------------------------------------------------
+
+snippet {{ "Answer Tag" iA
+{{$1}}$0
+endsnippet
+
+snippet `\\tt ` "Text" A
+\$\text{$1}\$ $0
+endsnippet
+
+snippet `\\tb ` "Bold Text" A
+\$\textbf{$1}\$ $0
+endsnippet
+
+# ------------------------------------------------
+#  □ LaTeX Operators
+# ------------------------------------------------
+
+snippet != "Not Equal to" iAm
+\neq
+endsnippet
+
+snippet >= "No Less than" iAm
+\geqslant
+endsnippet
+
+snippet <= "No Greater than" iAm
+\leqslant
+endsnippet
+
+snippet == "Always Equal to" iAm
+\equiv
+endsnippet
+
+snippet ~~ "Approximately Equal to" iAm
+\approx
+endsnippet
+
+snippet ~= "Congruent" iAm
+\cong
+endsnippet
+
+snippet \~ "Wave" iAm
+\sim
+endsnippet
+
+snippet \| "Limit" iAm
+\upharpoonright
+endsnippet
+
+snippet (= "Subset" iAm
+\subseteq
+endsnippet
+
+snippet (- "Proper Subset" iAm
+\subset
+endsnippet
+
+snippet =) "Supset" iAm
+\supseteq
+endsnippet
+
+snippet -) "Proper Supset" iAm
+\supset
+endsnippet
+
+snippet <( "Curl" iAm
+\prec
+endsnippet
+
+snippet >) "Proper Supset" iAm
+\succ
+endsnippet
+
+# ------------------------------------------------
+#  □ LaTeX Symbol
+# ------------------------------------------------
+
+global
+function createArray(m) {
+    const type = /\\arr(n|x)(0|1)/.test(m[0])
+        ? ", "
+        : /enum(n|x)(0|1)/.test(m[0])
+        ? " $2 "
+        : " ";
+    const start = /\\(arr|enum|ran)(n|x)0/.test(m[0]) ? 0 : 1;
+    const last = /\\(arr|enum|ran)n(0|1)/.test(m[0])
+        ? "n"
+        :/enumx(0|1)/.test(m[0])
+        ? "$3"
+        : "$2";
+
+    return `$1_${start}${type}$1_${start + 1}${type}\\cdots${type}$1_${last}`;
+}
+endglobal
+
+snippet `\\lines ` "Multi Lines" Am
+\displaylines{$1}$0
+endsnippet
+
+snippet `\\lines\d+` "Multi Lines" Am
+`` rv = openBracket(["\\obr" + m[0].match(/\d+/)[0]], false) ``$0
+endsnippet
+
+snippet ^^ "Supscript" iAm
+^{$1}$0
+endsnippet
+
+snippet __ "Subscript" iAm
+_{$1}$0
+endsnippet
+
+snippet `\\(arr|enum|ran)(n|x)(0|1)` "Array" Am
+`` rv = createArray(m) ``$0
+endsnippet
+
+# ------------------------------------------------
+#  □ LaTeX Font
+# ------------------------------------------------
+
+snippet `\\sf ` "Single Sans Serif" Am
+\mathsf 
+endsnippet
+
+snippet `\\rm ` "Single Roman" Am
+\mathrm 
+endsnippet
+
+snippet `\\bf ` "Single Bold" Am
+\mathbf 
+endsnippet
+
+snippet `\\cal ` "Single Calligraphic" Am
+\mathcal 
+endsnippet
+
+snippet `\\scr ` "Single Script" Am
+\mathscr 
+endsnippet
+
+snippet `\\go ` "Single Fraktur" Am
+\mathfrak 
+endsnippet
+
+snippet `\\t ` "Inline Text" Am
+\text{$1}$0
+endsnippet
+
+snippet `\\b ` "Bold Inline Text" Am
+\textbf{$1}$0
+endsnippet
+
+snippet `\\s ` "Sans Serif Inline Text" Am
+\textsf{$1}$0
+endsnippet
+
+snippet `\\ssf ` "Small Sans Serif Inline Text" Am
+\footnotesize \textsf{$1} \normalsize$0
+endsnippet
+
+snippet `\\sff ` "Sans Serif" Am
+\mathsf{$1}$0
+endsnippet
+
+snippet `\\rmm ` "Roman" Am
+\mathrm{$1}$0
+endsnippet
+
+snippet `\\bff ` "Bold" Am
+\mathbf{$1}$0
+endsnippet
+
+snippet `\\call ` "Calligraphic" Am
+\mathcal{$1}$0
+endsnippet
+
+snippet `\\scrr ` "Script" Am
+\mathscr{$1}$0
+endsnippet
+
+snippet `\\goo ` "Fraktur" Am
+\mathfrak{$1}$0
+endsnippet
+
+# ------------------------------------------------
+#  □ LaTeX Brackets
+# ------------------------------------------------
+
+global
+function openBracket(m, b) {
+    const inline = m[0][3] === "r" ? "\n" : " ";
+    const lines = Number(m[0].match(/\d+/)[0]);
+
+    if (lines == 0) return "";
+    let result = (b ? "\\left\\{" : "") + "\\begin{aligned}"
+    result += inline + "& ";
+    result += new Array(lines)
+        .fill()
+        .map((_, index) => `$${index + 1}`)
+        .join(` \\\\\\\\${inline}& `);
+    result += inline + "\\end{aligned}" + (b ? "\\right." : "");
+    return result;
+}
+endglobal
+
+snippet `\\sb ` "Parentheses" Am
+\left($1\right)$0
+endsnippet
+
+snippet `\\mb ` "Brackets" Am
+\left[$1\right]$0
+endsnippet
+
+snippet `\\ab ` "Angle Bracket" Am
+\left<$1\right>$0
+endsnippet
+
+snippet `\\bb ` "Curly Brackets" Am
+\left\\{$1\right\\}$0
+endsnippet
+
+snippet `\\cb ` "Ceil Brackets" Am
+\left\lceil $1\right\rceil$0
+endsnippet
+
+snippet `\\fb ` "Floor Brackets" Am
+\left\lfloor $1\right\rfloor$0
+endsnippet
+
+snippet `\\obr?\d+` "Opening Braces" Am
+`` rv = openBracket(m, true) ``$0
+endsnippet
+
+# ------------------------------------------------
+#  □ LaTeX Matrix
+# ------------------------------------------------
+
+global
+function matrix(m) {
+    const type = m[0][1];
+    const rows = Number(m[0][m[0].length - 2]), cols = Number(m[0][m[0].length - 1]);
+
+    let result = "";
+    result += `\\begin{${type}matrix}\n`;
+    result += new Array(rows)
+        .fill()
+        .map((_, index) => new Array(cols)
+            .fill()
+            .map((_, subIndex) => `$${index * cols + subIndex + 1}`)
+            .join(" & ") + " \\\\\\\\"
+        )
+        .join("\n");
+    result += `\n\\end{${type}matrix}`;
+    return result;
+}
+endglobal
+
+snippet `\\[pbBvV]mat(rix)?\d\d` "m × n Matrix" Am
+`` rv = matrix(m) ``$0
+endsnippet
+
+snippet `\\[pbBvV]mat(rix)?mn ` "m × n Matrix with Dots" Am
+`` rv = `\\begin{${m[0][1]}matrix}` ``
+$1_{11} & $1_{12} & \cdots & $1_{1$3} \\\\
+$1_{21} & $1_{22} & \cdots & $1_{2$3} \\\\
+\vdots & \vdots & \ddots & \vdots \\\\
+$1_{${2}1} & $1_{${2}2} & \cdots & $1_{$2$3} \\\\
+`` rv = `\\end{${m[0][1]}matrix}` ``$0
+endsnippet
+
+snippet `\\[pbBvV]diagnn ` "Diagonal Matrix with Dots" Am
+`` rv = `\\begin{${m[0][1]}matrix}` ``
+$1_{11} &  &  &  \\\\
+ & $1_{22} &  &  \\\\
+ &  & \ddots &  \\\\
+ &  &  & $1_{${2}} \\\\
+`` rv = `\\end{${m[0][1]}matrix}` ``$0
+endsnippet
+
+# ------------------------------------------------
+#  □ LaTeX Proof Tree
+# ------------------------------------------------
+
+global
+function proofTree(m) {
+    const isInline =  m[0][1] === "i";
+    const isComplete = /[ib]treer?\d/.test(m[0]);
+    const rightLabel = /[ib]t(ree)?r\d/.test(m[0]);
+    const width = Number(m[0][m[0].length - 1]);
+    const interval = isInline ? " " : "\n";
+    const trees = ["UnaryInfC", "BinaryInfC", "TrinaryInfC", "QuaternaryInfC", "QuinaryInfC"];
+    const bracket = (str) => (isInline ? "\\(" : "$") + str + (isInline ? "\\)" : "$");
+
+    let result = "";
+    result += isComplete ? ("\\begin{prooftree}" + interval) : "";
+    result += Array(width)
+        .fill()
+        .map((_, index) => `\\AxiomC{${bracket(`$${index + 1}`)}}`)
+        .join(interval);
+    result += rightLabel ? interval + `\\RightLabel{${bracket(`$${width + 1}`)}}` : "";
+    result += interval + `\\${trees[width - 1]}{${bracket(`$${rightLabel ? width + 2 : width + 1}`)}}`
+    result += isComplete ? (interval + "\\end{prooftree}") : "";
+    return result;
+}
+endglobal
+
+snippet `\\[ib]t(ree)?r?[1-5]` "Proof Tree" A
+``rv = proofTree(m)``$0
+endsnippet

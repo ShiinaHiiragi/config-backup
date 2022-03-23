@@ -1,0 +1,218 @@
+{
+    "code-runner.executorMap": {
+        "c": "cd $dir && gcc \"$fileName\" -Wall -o \"$fileNameWithoutExt\" && $dir$fileNameWithoutExt ; rm \"$fileNameWithoutExt\"",
+        "cpp": "cd $dir && g++ \"$fileName\" -Wall -o \"$fileNameWithoutExt\" && $dir$fileNameWithoutExt ; rm \"$fileNameWithoutExt\"",
+        "csharp": "cd $dir && dotnet run",
+        "java": "cd $dir && javac $fileName && java $fileNameWithoutExt",
+        "ruby": "ruby",
+        "python": "python",
+        "js": "node",
+        "javascript": "node",
+        "typescript": "tsc",
+        "coffeescript": "coffee",
+        "powershell": "powershell -ExecutionPolicy ByPass -File",
+        "bat": "cmd /c"
+    },
+    "code-runner.runInTerminal": true,
+    "diffEditor.ignoreTrimWhitespace": false,
+    "editor.acceptSuggestionOnCommitCharacter": true,
+    "editor.copyWithSyntaxHighlighting": false,
+    "editor.cursorBlinking": "solid",
+    "editor.fontFamily": "'Fira Code', 'Noto Sans SC', sans-serif",
+    "editor.fontLigatures": true,
+    "editor.fontSize": 13.7,
+    "editor.largeFileOptimizations": false,
+    "editor.minimap.enabled": false,
+    "editor.renderControlCharacters": false,
+    "editor.semanticHighlighting.enabled": true,
+    "editor.suggestSelection": "first",
+    "editor.tabSize": 2,
+    "editor.tokenColorCustomizations": {
+        // "comments": "#8d8d8d",
+        // "functions": "#C00000",
+        "types": "#39495E",
+        "textMateRules": [
+            {
+                "name": "Comment",
+                "scope": [
+                    "comment",
+                    "comment.block",
+                    "comment.block.documentation",
+                    "comment.line",
+                    "comment.line.double-slash",
+                    "punctuation.definition.comment"
+                ],
+                "settings": {
+                    "fontStyle": ""
+                }
+            },
+            {
+                "name": "Other",
+                "scope": "keyword.control",
+                "settings": {
+                    "fontStyle": ""
+                }
+            }
+        ]
+    },
+    "editor.wordWrap": "on",
+    "emmet.triggerExpansionOnTab": true,
+    "explorer.confirmDragAndDrop": false,
+    "files.associations": {
+        "*.js": "javascript",
+        "buffer": "plaintext"
+    },
+    "git.confirmSync": false,
+    "git.ignoreWindowsGit27Warning": true,
+    "hediet.vscode-drawio.codeLinkActivated": false,
+    "markdown.extension.list.indentationSize": "inherit",
+    "json.maxItemsComputed": 32768,
+    "jupyter.askForKernelRestart": false,
+    "latex-workshop.latex.recipes": [
+        {
+            "name": "pdflatex  ",
+            "tools": [
+                "pdflatex"
+            ]
+        },
+        {
+          "name": "pdflatex → bibtex → pdflatex",
+          "tools": [
+            "pdflatex",
+            "bibtex",
+            "pdflatex",
+            "pdflatex"
+          ]
+        }
+    ],
+    "latex-workshop.latex.tools": [
+        {
+            "name": "pdflatex",
+            "command": "pdflatex",
+            "args": [
+                "-synctex=1",
+                "-interaction=nonstopmode",
+                "-file-line-error",
+                "%DOC%"
+            ]
+        },
+        {
+            "name": "bibtex",
+            "command": "bibtex",
+            "args": [
+                "%DOCFILE%"
+            ]
+        }
+    ],
+    "latex-workshop.view.pdf.viewer": "tab",
+    "latex-workshop.latex.autoBuild.interval": 30000,
+    "latex-workshop.latex.autoClean.run": "onBuilt",
+    "latex-workshop.latex.recipe.default": "lastUsed",
+    "markdown.preview.fontFamily": "'Noto Sans Light', 'Noto Sans SC Light', sans-serif",
+    "python.defaultInterpreterPath": "C:/Python38/python.exe",
+    "openInExternalApp.openMapper": [
+        {
+            "extensionName": "html",
+            "apps": [
+                {
+                    "title": "chrome",
+                    "openCommand": "/usr/bin/google-chrome"
+                }
+            ]
+        }
+    ],
+    "settingsSync.ignoredExtensions": [],
+    "terminal.external.windowsExec": "G:/Application/UWPApplication/Windows Terminal.exe",
+    "terminal.integrated.fontSize": 14,
+    "terminal.integrated.profiles.windows": {
+        "PowerShell": {
+            "source": "PowerShell",
+            "icon": "terminal-powershell"
+        },
+        "Command Prompt": {
+            "path": [
+                "${env:windir}/Sysnative/cmd.exe",
+                "${env:windir}/System32/cmd.exe"
+            ],
+            "args": [],
+            "icon": "terminal-cmd"
+        },
+        "Git Bash": {
+            "source": "Git Bash"
+        },
+        "Windows PowerShell": {
+            "path": "C:/WINDOWS/System32/WindowsPowerShell/v1.0/powershell.exe"
+        }
+    },
+    "terminal.integrated.defaultProfile.windows": "PowerShell",
+    "todo-tree.general.tags": [
+        "NOTE",
+        "TODO",
+        "TEMP",
+        "FIX",
+        "[ ]",
+        "[x]"
+    ],
+    "todo-tree.highlights.customHighlight": {
+        "TODO": {
+            "background": "#575fcf40",
+            "borderRadius": "0"
+        },
+        "NOTE": {
+            "background": "#ffdd5940",
+            "borderRadius": "0"
+        },
+        "TEMP": {
+            "background": "#ffa80140",
+            "borderRadius": "0"
+        },
+        "FIX": {
+            "background": "#ff475740",
+            "borderRadius": "0"
+        },
+        "[ ]": {
+            "background": "#ff475740",
+            "borderRadius": "0"
+        },
+        "[x]": {
+            "background": "#2ed5733b",
+            "borderRadius": "0"
+        }
+    },
+    "todo-tree.regex.regex": "(//|#|<!--|;|/\\*|^|^\\s*(-|\\d+.))\\s*($TAGS)",
+    "vim.autoSwitchInputMethod.enable": true,
+    "vim.autoSwitchInputMethod.defaultIM": "1033",
+    "vim.autoSwitchInputMethod.obtainIMCmd": "G:/Application/IMSelect/im_select.exe",
+    "vim.autoSwitchInputMethod.switchIMCmd": "G:/Application/IMSelect/im_select.exe {im}",
+    "vim.insertModeKeyBindings": [
+        {
+            "before": [
+                "j",
+                "k"
+            ],
+            "after": [
+                "<Esc>"
+            ]
+        }
+    ],
+    "workbench.colorTheme": "Atom One Light",
+    "workbench.colorCustomizations": {
+        "terminal.ansiBrightYellow": "#FB543F",
+        "terminal.ansiBrightWhite": "#808080"
+    },
+    "workbench.editorAssociations": {
+        "*.jpg": "luna.editor",
+        "*.ico": "luna.editor",
+        "*.png": "luna.editor",
+        "*.ipynb": "jupyter.notebook.ipynb",
+        "*.jpeg": "luna.editor",
+        "*.arrow": "default"
+    },
+    "workbench.editor.untitled.hint": "hidden",
+    "workbench.iconTheme": "material-icon-theme",
+    "[markdown]": {
+        "editor.autoClosingBrackets": "never"
+    },
+    "editor.accessibilitySupport": "off",
+    "git.autofetch": true
+}
