@@ -26,7 +26,7 @@
     "editor.renderControlCharacters": false,
     "editor.semanticHighlighting.enabled": true,
     "editor.suggestSelection": "first",
-    "editor.tabSize": 2,
+    "editor.tabSize": 4,
     "editor.tokenColorCustomizations": {
         // "comments": "#8d8d8d",
         // "functions": "#C00000",
