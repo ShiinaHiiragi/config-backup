@@ -115,7 +115,7 @@
             "extensionName": "html",
             "apps": [
                 {
-                    "title": "chrome",
+                    "title": "Chrome",
                     "openCommand": "/usr/bin/google-chrome"
                 }
             ]
