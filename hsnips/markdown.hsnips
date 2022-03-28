@@ -2,7 +2,7 @@
 #  ■ Snippets for Markdown
 # ----------------------------------------------------------------
 #  Author:  Ichinoe Mizue
-#  Version: 1.6.0
+#  Version: 1.6.1
 # ================================================================
 
 # ------------------------------------------------
@@ -57,11 +57,11 @@ snippet \'' "Chinese Parentheses" iA
 （$1）$0
 endsnippet
 
-snippet \[[ "Square Beackets" iA
+snippet \[] "Square Beackets" iA
 「$1」$0
 endsnippet
 
-snippet \,, "Square Quotes" iA
+snippet \,. "Square Quotes" iA
 『$1』$0
 endsnippet
 
@@ -179,8 +179,20 @@ snippet \~ "Wave" iAm
 \sim
 endsnippet
 
-snippet \| "Limit" iAm
-\upharpoonright
+snippet \\ "Fraction" iAm
+\dfrac{$1}{$2}$0
+endsnippet
+
+snippet \/ "Fraction" iAm
+\frac{$1}{$2}$0
+endsnippet
+
+snippet \| "Divide" iAm
+\mid
+endsnippet
+
+snippet +- "Plus Minus" iAm
+\pm
 endsnippet
 
 snippet (= "Subset" iAm
