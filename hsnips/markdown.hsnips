@@ -2,7 +2,7 @@
 #  ■ Snippets for Markdown
 # ----------------------------------------------------------------
 #  Author:  Ichinoe Mizue
-#  Version: 1.6.1
+#  Version: 1.6.2
 # ================================================================
 
 # ------------------------------------------------
@@ -41,16 +41,12 @@ snippet \-- "Dash" iA
 ——
 endsnippet
 
-snippet \^ "Ellipsis" iA
+snippet \^^ "Ellipsis" iA
 ……
 endsnippet
 
-snippet \-. "Dotted" iA
+snippet \`` "Dotted" iA
 ·
-endsnippet
-
-snippet \xx "Cross" iA
-×
 endsnippet
 
 snippet \'' "Chinese Parentheses" iA
@@ -65,45 +61,17 @@ snippet \,. "Square Quotes" iA
 『$1』$0
 endsnippet
 
+snippet \., "Cross" iA
+×
+endsnippet
+
 # ------------------------------------------------
-#  □ Title
+#  □ Markdown Syntax
 # ------------------------------------------------
 
 snippet `\\[1-6]` "Title" A
 `` rv = "#".repeat(Number(m[0][1])) + " " ``
 endsnippet
-
-# ------------------------------------------------
-#  □ Signature and Tag
-# ------------------------------------------------
-
-snippet _< "Raw Sub" iA
-`` rv = '<sub>$1</sub>$0' ``
-endsnippet
-
-snippet ^< "Raw Sup" iA
-`` rv = '<sup>$1</sup>$0' ``
-endsnippet
-
-snippet `\\date ` "Date" A
-``
-const today = new Date();
-const yyyy = today.getFullYear(), M = today.getMonth() + 1, d = today.getDate();
-rv = `${yyyy} ${M}/${d}`
-``
-endsnippet
-
-snippet `\\ra ` "Right Align" A
-`` rv = '<p align="right"> $1 </p>$0' ``
-endsnippet
-
-snippet `\\img ` "Insert a Image" A
-`` rv = '<div style="text-align: center;">\n    <image src="" width="100%">\n</div>' ``
-endsnippet
-
-# ------------------------------------------------
-#  □ Table
-# ------------------------------------------------
 
 global
 function table(m) {
@@ -132,6 +100,30 @@ snippet `\\table\d\d` "m × nTable" A
 endsnippet
 
 # ------------------------------------------------
+#  □ HTML Tag and Entity
+# ------------------------------------------------
+
+snippet `\\; ` "Space" iA
+&nbsp;
+endsnippet
+
+snippet `\\； ` "Space" iA
+&ensp;
+endsnippet
+
+snippet `\\；; ` "Space" iA
+&emsp;
+endsnippet
+
+snippet _< "Raw Sub" iA
+`` rv = '<sub>$1</sub>$0' ``
+endsnippet
+
+snippet ^< "Raw Sup" iA
+`` rv = '<sup>$1</sup>$0' ``
+endsnippet
+
+# ------------------------------------------------
 #  □ Combination Abbreviation
 # ------------------------------------------------
 
@@ -145,6 +137,22 @@ endsnippet
 
 snippet `\\tb ` "Bold Text" A
 \$\textbf{$1}\$ $0
+endsnippet
+
+snippet `\\date ` "Date" A
+``
+const today = new Date();
+const yyyy = today.getFullYear(), M = today.getMonth() + 1, d = today.getDate();
+rv = `${yyyy} ${M}/${d}`
+``
+endsnippet
+
+snippet `\\ra ` "Right Align" A
+`` rv = '<p align="right"> $1 </p>$0' ``
+endsnippet
+
+snippet `\\img ` "Insert a Image" A
+`` rv = '<div style="text-align: center;">\n    <image src="" width="100%">\n</div>' ``
 endsnippet
 
 # ------------------------------------------------
@@ -199,7 +207,7 @@ snippet (= "Subset" iAm
 \subseteq
 endsnippet
 
-snippet (- "Proper Subset" iAm
+snippet (_ "Proper Subset" iAm
 \subset
 endsnippet
 
@@ -207,7 +215,7 @@ snippet =) "Supset" iAm
 \supseteq
 endsnippet
 
-snippet -) "Proper Supset" iAm
+snippet _) "Proper Supset" iAm
 \supset
 endsnippet
 
@@ -215,7 +223,7 @@ snippet <( "Curl" iAm
 \prec
 endsnippet
 
-snippet >) "Proper Supset" iAm
+snippet >) "Curl" iAm
 \succ
 endsnippet
 
@@ -240,6 +248,10 @@ function createArray(m) {
     return `$1_${start}${type}$1_${start + 1}${type}\\cdots${type}$1_${last}`;
 }
 endglobal
+
+snippet `\\mod ` "Mod" iAm
+$1 \equiv $2 (\bmod $3)$0
+endsnippet
 
 snippet `\\lines ` "Multi Lines" Am
 \displaylines{$1}$0
@@ -350,20 +362,24 @@ function openBracket(m, b) {
 }
 endglobal
 
-snippet `\\sb ` "Parentheses" Am
+snippet `\\\( ` "Parentheses" Am
 \left($1\right)$0
 endsnippet
 
-snippet `\\mb ` "Brackets" Am
+snippet `\\\[ ` "Brackets" Am
 \left[$1\right]$0
 endsnippet
 
-snippet `\\ab ` "Angle Bracket" Am
+snippet `\\\{ ` "Curly Brackets" Am
+\left\\{$1\right\\}$0
+endsnippet
+
+snippet `\\< ` "Angle Bracket" Am
 \left<$1\right>$0
 endsnippet
 
-snippet `\\bb ` "Curly Brackets" Am
-\left\\{$1\right\\}$0
+snippet `\\ab ` "Absolute Value" Am
+\left|$1\right|$0
 endsnippet
 
 snippet `\\cb ` "Ceil Brackets" Am
